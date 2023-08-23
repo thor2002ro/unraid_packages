@@ -22,11 +22,17 @@ mkdir -p "$PKG_DIR"
 git clone https://github.com/fenrus75/powertop.git --branch master --depth 1
 cd "$GIT_DIR"
 
+git clone https://git.kernel.org/pub/scm/libs/libtrace/libtraceevent.git/
+cd libtraceevent; make; sudo make install; cd ..;
+
+git clone https://git.kernel.org/pub/scm/libs/libtrace/libtracefs.git/
+cd libtracefs; make; sudo make install; cd ..;
+
 ./autogen.sh
 ./configure
 
 CFLAGS="$FLAGS" \
-make -j10
+make -j10 
 
 make install DESTDIR="$START/$PKG_DIR" sbindir="/usr/bin"
 

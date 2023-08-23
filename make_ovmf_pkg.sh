@@ -4,7 +4,7 @@ START="$PWD"
 
 cd "$START"
 
-pkg_name="ovmf_2022.08-1_all.deb"
+pkg_name="ovmf_2023.05-1_all.deb"
 
 PKG="ovmf_x64"
 PKG_DIR=""$PKG"_pkg"
