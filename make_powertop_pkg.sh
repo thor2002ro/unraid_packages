@@ -23,7 +23,7 @@ git clone https://github.com/fenrus75/powertop.git --branch master --depth 1
 cd "$GIT_DIR"
 
 git clone https://git.kernel.org/pub/scm/libs/libtrace/libtraceevent.git
-cd libtraceevent; meson configure --default-library=static; make; cd lib; rm *.so*; cd ../..;
+cd libtraceevent; meson configure --default-library=static; make; sudo make install; cd lib; rm *.so*; cd ../..;
 
 git clone https://git.kernel.org/pub/scm/libs/libtrace/libtracefs.git
 cd libtracefs; meson configure --default-library=static; make; cd lib; rm *.so*; cd ../..;

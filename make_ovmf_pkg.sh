@@ -1,10 +1,11 @@
-#!/bin/sh
+#!/bin/bash
+
 
 START="$PWD"
 
 cd "$START"
 
-pkg_name="ovmf_2023.05-1_all.deb"
+pkg_date="2024.02-2"
 
 PKG="ovmf_x64"
 PKG_DIR=""$PKG"_pkg"
@@ -24,11 +25,25 @@ mkdir -p "$PKG"
 
 cd "$PKG"
 
-#WGET
-wget "http://ftp.de.debian.org/debian/pool/main/e/edk2/$pkg_name"
+# Download Debian packages
+wget "http://ftp.de.debian.org/debian/pool/main/e/edk2/ovmf_${pkg_date}_all.deb" || { echo "Error downloading ovmf package"; exit 1; }
+wget "http://ftp.de.debian.org/debian/pool/main/e/edk2/qemu-efi-aarch64_${pkg_date}_all.deb" || { echo "Error downloading qemu-efi-aarch64 package"; exit 1; }
+wget "http://ftp.de.debian.org/debian/pool/main/e/edk2/qemu-efi-arm_${pkg_date}_all.deb" || { echo "Error downloading qemu-efi-arm package"; exit 1; }
 
-ar x *.deb
-tar -xf data.* -C "$START/$PKG_DIR"
+# Create an array of deb files
+deb_files=(*.deb)
+
+# Loop through each deb file and extract data tar files
+for deb_file in "${deb_files[@]}"; do
+    # Extract deb file
+    ar x "$deb_file"
+    
+    # Extract data tar file
+    data_tar=$(ls data.*)
+    package_name="${deb_file%_*}" # Extract package name from deb filename
+    mv "$data_tar" "${package_name}_data.tar"
+    tar -xf "${package_name}_data.tar" -C "$START/$PKG_DIR"
+done
 
 echo -e "\e[95m MAKEPKG "$GIT_DIR""
 cd "$START/$PKG_DIR"
