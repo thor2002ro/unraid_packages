@@ -5,7 +5,7 @@ START="$PWD"
 
 cd "$START"
 
-pkg_date="2024.02-2"
+pkg_date="2024.05-2"
 
 PKG="ovmf_x64"
 PKG_DIR=""$PKG"_pkg"
