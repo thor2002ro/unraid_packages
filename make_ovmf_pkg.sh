@@ -57,7 +57,7 @@ mkdir -p usr/share/qemu/ovmf-x64
 mv usr/share/OVMF/* usr/share/qemu/ovmf-x64/
 rm -r usr/share/OVMF
 
-fakeroot "$START"/makepkg -l n -c y "$START/$OUT_DIR/$PKG"-$(date +'%Y%m%d')-x86_64-thor.tgz
+"$START"/makepkg -l n -c y "$START/$OUT_DIR/$PKG"-$(date +'%Y%m%d')-x86_64-thor.tgz
 
 cd "$START"
 

@@ -40,7 +40,7 @@ cd "$START/$PKG_DIR" || exit 1
 # rm -r "usr/share/man"
 
 # Create the package using fakeroot and makepkg
-fakeroot "$START"/makepkg -l n -c y "$START/$OUT_DIR/$PKG"-$(date +'%Y%m%d')-x86_64-thor.tgz
+"$START"/makepkg -l n -c y "$START/$OUT_DIR/$PKG"-$(date +'%Y%m%d')-x86_64-thor.tgz
 
 # Go back to the starting directory
 cd "$START"

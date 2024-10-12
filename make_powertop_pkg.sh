@@ -50,7 +50,7 @@ cd "$START/$PKG_DIR"
 #remove man/locales
 rm -r "usr/local"
 
-fakeroot "$START"/makepkg -l n -c y "$START/$OUT_DIR/$PKG"-$(date +'%Y.%m.%d')-x86_64-thor.tgz
+"$START"/makepkg -l n -c y "$START/$OUT_DIR/$PKG"-$(date +'%Y.%m.%d')-x86_64-thor.tgz
 
 cd "$START"
 
